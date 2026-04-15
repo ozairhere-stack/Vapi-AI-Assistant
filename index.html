@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Vapi AI Assistant</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 { color: #1a73e8; }
+        p { color: #5f6368; line-height: 1.6; }
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #1557b0; }
+        #status { margin-top: 15px; font-weight: bold; color: #34a853; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>AI Office Assistant</h1>
+        <p>Hi! I'm Ozair. Click the button below to start a voice call and book your appointment.</p>
+        <button id="call-btn">Start Voice Call</button>
+        <div id="status"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/vapi-public.js"></script>
+
+    <script>
+        const vapi = new Vapi('4d171f95-ec76-4550-b300-4eb1195aaf69'); // Dashboard -> Account -> Public Key
+        const assistantId = '5a78b767-4c32-4044-8e19-47c095ed2275'; // Assistants Tab -> Assistant ID
+
+        const btn = document.getElementById('call-btn');
+        const status = document.getElementById('status');
+
+        btn.addEventListener('click', () => {
+            vapi.start(assistantId);
+            status.innerText = "Connecting...";
+        });
+
+        vapi.on('call-start', () => {
+            status.innerText = "Call in progress...";
+            btn.innerText = "Stop Call";
+        });
+
+        vapi.on('call-end', () => {
+            status.innerText = "Call ended.";
+            btn.innerText = "Start Voice Call";
+        });
+    </script>
+</body>
+</html>
