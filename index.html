@@ -9,14 +9,16 @@
     <!-- Add Vapi Widget -->
     <script src="https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js" async type="text/javascript"></script>
     
-    <vapi-widget
-      public-key="4d171f95-ec76-4550-b300-4eb1195aaf69"
-      assistant-id="5a78b767-4c32-4044-8e19-47c095ed2275"
-      mode="voice"
-      size="compact"
-      mode="chat"
-      size="full"
-      theme="light"
-    ></vapi-widget>
+ <vapi-widget
+   public-key="4d171f95-ec76-4550-b300-4eb1195aaf69"
+   assistant-id="5a78b767-4c32-4044-8e19-47c095ed2275"
+   mode="chat"
+   main-label="Chat with Support"
+   start-button-text="Start Voice Chat"
+   end-button-text="End Call"
+   empty-chat-message="Hi! How can I help you today?"
+   empty-voice-message="Click to start a voice conversation"
+></vapi-widget>
+
 </body>
 </html>
